@@ -7,7 +7,7 @@
 ;Variables
 
   !define PRODUCT_NAME "Denariium"
-  !define PRODUCT_WEB_SITE "https://github.com/pooler/denariium"
+  !define PRODUCT_WEB_SITE "https://github.com/carsenk/denariium"
   !define PRODUCT_PUBLISHER "Electrum Technologies GmbH"
   !define PRODUCT_UNINST_KEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}"
 
