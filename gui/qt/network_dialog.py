@@ -100,14 +100,14 @@ class NetworkChoiceLayout(object):
         self.autoconnect_cb.setChecked(auto_connect)
         self.autoconnect_cb.setEnabled(self.config.is_modifiable('auto_connect'))
 
-        msg = _("Electrum sends your wallet addresses to a single server, in order to receive your transaction history.")
+        msg = _("Denariium sends your wallet addresses to a single server, in order to receive your transaction history.")
         grid.addWidget(QLabel(_('Server') + ':'), 0, 0)
         grid.addWidget(self.server_host, 0, 1, 1, 2)
         grid.addWidget(self.server_port, 0, 3)
         grid.addWidget(HelpButton(msg), 0, 4)
         msg = ' '.join([
-            _("If auto-connect is enabled, Electrum will always use a server that is on the longest blockchain."),
-            _("If it is disabled, you have to choose a server you want to use. Electrum will warn you if your server is lagging.")
+            _("If auto-connect is enabled, Denariium will always use a server that is on the longest blockchain."),
+            _("If it is disabled, you have to choose a server you want to use. Denariium will warn you if your server is lagging.")
         ])
         grid.addWidget(self.ssl_cb, 1, 1, 1, 3)
         grid.addWidget(self.autoconnect_cb, 2, 1, 1, 3)

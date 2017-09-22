@@ -1,5 +1,5 @@
 """
-py2app/py2exe build script for Electrum
+py2app/py2exe build script for Denariium
 
 Usage (Mac OS X):
      python setup.py py2app

@@ -1,5 +1,5 @@
 # If you want electrum to appear in a linux app launcher ("start menu"), install this by doing:
-# sudo desktop-file-install electrum.desktop
+# sudo desktop-file-install denariium.desktop
 
 [Desktop Entry]
 Comment=Lightweight Denarius Client
@@ -7,8 +7,8 @@ Exec=denariium %u
 GenericName[en_US]=Denarius Wallet
 GenericName=Denarius Wallet
 Icon=denariium
-Name[en_US]=Electrum Denarius Wallet
-Name=Electrum Denarius Wallet
+Name[en_US]=Denariium Denarius Wallet
+Name=Denariium Denarius Wallet
 Categories=Finance;Network;
 StartupNotify=false
 Terminal=false
