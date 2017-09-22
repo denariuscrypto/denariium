@@ -17,3 +17,4 @@ env/
 .buildozer/
 bin/
 .vscode/
+.eggs/
