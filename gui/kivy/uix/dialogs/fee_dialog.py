@@ -3,8 +3,8 @@ from kivy.factory import Factory
 from kivy.properties import ObjectProperty
 from kivy.lang import Builder
 
-from vialectrum.util import fee_levels
-from vialectrum_gui.kivy.i18n import _
+from denariium.util import fee_levels
+from denariium_gui.kivy.i18n import _
 
 Builder.load_string('''
 <FeeDialog@Popup>

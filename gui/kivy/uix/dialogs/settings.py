@@ -3,18 +3,18 @@ from kivy.factory import Factory
 from kivy.properties import ObjectProperty
 from kivy.lang import Builder
 
-from vialectrum.util import base_units
-from vialectrum.i18n import languages
-from vialectrum_gui.kivy.i18n import _
-from vialectrum.plugins import run_hook
-from vialectrum import coinchooser
-from vialectrum.util import fee_levels
+from denariium.util import base_units
+from denariium.i18n import languages
+from denariium_gui.kivy.i18n import _
+from denariium.plugins import run_hook
+from denariium import coinchooser
+from denariium.util import fee_levels
 
 from choice_dialog import ChoiceDialog
 
 Builder.load_string('''
 #:import partial functools.partial
-#:import _ vialectrum_gui.kivy.i18n._
+#:import _ denariium_gui.kivy.i18n._
 
 <SettingsItem@ButtonBehavior+BoxLayout>
     orientation: 'vertical'

@@ -3,8 +3,8 @@ from kivy.factory import Factory
 from kivy.properties import ObjectProperty
 from kivy.lang import Builder
 
-from vialectrum_gui.kivy.i18n import _
-from vialectrum.util import base_units
+from denariium_gui.kivy.i18n import _
+from denariium.util import base_units
 
 import os
 from label_dialog import LabelDialog

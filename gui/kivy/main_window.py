@@ -7,15 +7,15 @@ import traceback
 from decimal import Decimal
 import threading
 
-import vialectrum as electrum
-from vialectrum.bitcoin import TYPE_ADDRESS
-from vialectrum import WalletStorage, Wallet
-from vialectrum_gui.kivy.i18n import _
-from vialectrum.paymentrequest import InvoiceStore
-from vialectrum.util import profiler, InvalidPassword
-from vialectrum.plugins import run_hook
-from vialectrum.util import format_satoshis, format_satoshis_plain
-from vialectrum.paymentrequest import PR_UNPAID, PR_PAID, PR_UNKNOWN, PR_EXPIRED
+import denariium as electrum
+from denariium.bitcoin import TYPE_ADDRESS
+from denariium import WalletStorage, Wallet
+from denariium_gui.kivy.i18n import _
+from denariium.paymentrequest import InvoiceStore
+from denariium.util import profiler, InvalidPassword
+from denariium.plugins import run_hook
+from denariium.util import format_satoshis, format_satoshis_plain
+from denariium.paymentrequest import PR_UNPAID, PR_PAID, PR_UNKNOWN, PR_EXPIRED
 
 from kivy.app import App
 from kivy.core.window import Window
@@ -31,10 +31,10 @@ from kivy.lang import Builder
 
 # lazy imports for factory so that widgets can be used in kv
 Factory.register('InstallWizard',
-                 module='vialectrum_gui.kivy.uix.dialogs.installwizard')
-Factory.register('InfoBubble', module='vialectrum_gui.kivy.uix.dialogs')
-Factory.register('OutputList', module='vialectrum_gui.kivy.uix.dialogs')
-Factory.register('OutputItem', module='vialectrum_gui.kivy.uix.dialogs')
+                 module='denariium_gui.kivy.uix.dialogs.installwizard')
+Factory.register('InfoBubble', module='denariium_gui.kivy.uix.dialogs')
+Factory.register('OutputList', module='denariium_gui.kivy.uix.dialogs')
+Factory.register('OutputItem', module='denariium_gui.kivy.uix.dialogs')
 
 
 #from kivy.core.window import Window
@@ -48,14 +48,14 @@ util = False
 
 # register widget cache for keeping memory down timeout to forever to cache
 # the data
-Cache.register('vialectrum_widgets', timeout=0)
+Cache.register('denariium_widgets', timeout=0)
 
 from kivy.uix.screenmanager import Screen
 from kivy.uix.tabbedpanel import TabbedPanel
 from kivy.uix.label import Label
 from kivy.core.clipboard import Clipboard
 
-Factory.register('TabbedCarousel', module='vialectrum_gui.kivy.uix.screens')
+Factory.register('TabbedCarousel', module='denariium_gui.kivy.uix.screens')
 
 # Register fonts without this you won't be able to use bold/italic...
 # inside markup.
@@ -67,7 +67,7 @@ Label.register('Roboto',
                'gui/kivy/data/fonts/Roboto-Bold.ttf')
 
 
-from vialectrum.util import base_units
+from denariium.util import base_units
 
 
 class ElectrumWindow(App):
@@ -105,7 +105,7 @@ class ElectrumWindow(App):
         self._trigger_update_history()
 
     def _get_bu(self):
-        return self.electrum_config.get('base_unit', 'VIA')
+        return self.electrum_config.get('base_unit', 'DNR')
 
     def _set_bu(self, value):
         assert value in base_units.keys()
@@ -192,7 +192,7 @@ class ElectrumWindow(App):
 
         super(ElectrumWindow, self).__init__(**kwargs)
 
-        title = _('Vialectrum App')
+        title = _('Denariium App')
         self.electrum_config = config = kwargs.get('config', None)
         self.language = config.get('language', 'en')
         self.network = network = kwargs.get('network', None)
@@ -233,7 +233,7 @@ class ElectrumWindow(App):
             self.send_screen.do_clear()
 
     def on_qr(self, data):
-        from vialectrum.bitcoin import base_decode, is_address
+        from denariium.bitcoin import base_decode, is_address
         data = data.strip()
         if is_address(data):
             self.set_URI(data)
@@ -242,7 +242,7 @@ class ElectrumWindow(App):
             self.set_URI(data)
             return
         # try to decode transaction
-        from vialectrum.transaction import Transaction
+        from denariium.transaction import Transaction
         try:
             text = base_decode(data, None, base=43).encode('hex')
             tx = Transaction(text)
@@ -279,7 +279,7 @@ class ElectrumWindow(App):
         self.receive_screen.screen.address = addr
 
     def show_pr_details(self, req, status, is_invoice):
-        from vialectrum.util import format_time
+        from denariium.util import format_time
         requestor = req.get('requestor')
         exp = req.get('exp')
         memo = req.get('memo')
@@ -505,13 +505,13 @@ class ElectrumWindow(App):
 
         #setup lazy imports for mainscreen
         Factory.register('AnimatedPopup',
-                         module='vialectrum_gui.kivy.uix.dialogs')
+                         module='denariium_gui.kivy.uix.dialogs')
         Factory.register('QRCodeWidget',
-                         module='vialectrum_gui.kivy.uix.qrcodewidget')
+                         module='denariium_gui.kivy.uix.qrcodewidget')
 
         # preload widgets. Remove this if you want to load the widgets on demand
-        #Cache.append('vialectrum_widgets', 'AnimatedPopup', Factory.AnimatedPopup())
-        #Cache.append('vialectrum_widgets', 'QRCodeWidget', Factory.QRCodeWidget())
+        #Cache.append('denariium_widgets', 'AnimatedPopup', Factory.AnimatedPopup())
+        #Cache.append('denariium_widgets', 'QRCodeWidget', Factory.QRCodeWidget())
 
         # load and focus the ui
         self.root.manager = self.root.ids['manager']
@@ -523,7 +523,7 @@ class ElectrumWindow(App):
         self.receive_screen = None
         self.requests_screen = None
 
-        self.icon = "icons/vialectrum.png"
+        self.icon = "icons/denariium.png"
 
         # connect callbacks
         if self.network:
@@ -604,8 +604,8 @@ class ElectrumWindow(App):
                 from plyer import notification
             icon = (os.path.dirname(os.path.realpath(__file__))
                     + '/../../' + self.icon)
-            notification.notify('Vialectrum', message,
-                            app_icon=icon, app_name='Vialectrum')
+            notification.notify('Denariium', message,
+                            app_icon=icon, app_name='Denariium')
         except ImportError:
             Logger.Error('Notification: needs plyer; `sudo pip install plyer`')
 

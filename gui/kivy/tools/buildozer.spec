@@ -1,13 +1,13 @@
 [app]
 
 # (str) Title of your application
-title = Vialectrum
+title = Denariium
 
 # (str) Package name
-package.name = Vialectrum
+package.name = Denariium
 
 # (str) Package domain (needed for android/ios packaging)
-package.domain = org.vialectrum
+package.domain = org.denariium
 
 # (str) Source code where the main.py live
 source.dir = .

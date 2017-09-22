@@ -3,10 +3,10 @@ from kivy.factory import Factory
 from kivy.properties import ObjectProperty
 from kivy.lang import Builder
 
-from vialectrum.i18n import _
+from denariium.i18n import _
 
 Builder.load_string('''
-#:import _ vialectrum_gui.kivy.i18n._
+#:import _ denariium_gui.kivy.i18n._
 
 <CheckpointDialog@Popup>
     id: popup
