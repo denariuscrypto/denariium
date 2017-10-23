@@ -41,12 +41,12 @@ TESTNET = False
 NOLNET = False
 ADDRTYPE_P2PKH = 30
 ADDRTYPE_P2SH = 90
-ADDRTYPE_P2WPKH = 128
+ADDRTYPE_P2WPKH = 158
 XPRV_HEADER = 0x0488ade4
 XPUB_HEADER = 0x0488b21e
 XPRV_HEADER_ALT = 0x0488ade4
 XPUB_HEADER_ALT = 0x0488b21e
-HEADERS_URL = "https://headers.denariium.org/blockchain_headers"
+HEADERS_URL = "http://107.181.154.106/blockchain_headers"
 GENESIS = "00000d5dbbda01621cfc16bbc1f9bf3264d641a5dbf0de89fd0182c2c4828fcd"
 
 def set_testnet():
@@ -55,8 +55,8 @@ def set_testnet():
     global TESTNET, HEADERS_URL
     global GENESIS
     TESTNET = True
-    ADDRTYPE_P2PKH = 111
-    ADDRTYPE_P2SH = 196
+    ADDRTYPE_P2PKH = 18
+    ADDRTYPE_P2SH = 116
     ADDRTYPE_P2WPKH = 3
     XPRV_HEADER = 0x04358394
     XPUB_HEADER = 0x043587cf
@@ -89,7 +89,7 @@ FEE_STEP = 100000
 MAX_FEE_RATE = 1000000
 FEE_TARGETS = [25, 10, 5, 2]
 
-COINBASE_MATURITY = 100
+COINBASE_MATURITY = 30
 COIN = 100000000
 
 # supported types of transction outputs
@@ -487,7 +487,7 @@ from ecdsa.util import string_to_number, number_to_string
 def msg_magic(message):
     varint = var_int(len(message))
     encoded_varint = "".join([chr(int(varint[i:i+2], 16)) for i in xrange(0, len(varint), 2)])
-    return "\x18Denarius Signed Message:\n" + encoded_varint + message
+    return "\x19Denarius Signed Message:\n" + encoded_varint + message
 
 
 def verify_message(address, sig, message):
@@ -814,7 +814,7 @@ def xpub_from_xprv(xprv):
 
 
 def bip32_root(seed, xtype):
-    I = hmac.new("Bitcoin seed", seed, hashlib.sha512).digest()
+    I = hmac.new("Denarius seed", seed, hashlib.sha512).digest()
     master_k = I[0:32]
     master_c = I[32:]
     K, cK = get_pubkeys_from_secret(master_k)

@@ -51,17 +51,14 @@ DEFAULT_PORTS = {'t':'50001', 's':'50002'}
 #then gradually switch remaining nodes to e-x nodes
 
 DEFAULT_SERVERS = {
-    'denariium.denarius.io': DEFAULT_PORTS,
-    'viax1.bitops.me': DEFAULT_PORTS,
-    'denariium.bitops.me': DEFAULT_PORTS,
-    'denariium.bysh.me': DEFAULT_PORTS,
+    '107.181.154.106': DEFAULT_PORTS,
 }
 
 def set_testnet():
     global DEFAULT_PORTS, DEFAULT_SERVERS
     DEFAULT_PORTS = {'t':'51001', 's':'51002'}
     DEFAULT_SERVERS = {
-        'denariium.bysh.me': DEFAULT_PORTS
+        '107.181.154.106': DEFAULT_PORTS,
     }
 
 def set_nolnet():

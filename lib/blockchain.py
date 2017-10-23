@@ -248,7 +248,7 @@ class Blockchain(util.PrintError):
         target = bitsBase << (8 * (bitsN-3))
         # new target
         nActualTimespan = last.get('timestamp') - first.get('timestamp')
-        nTargetTimespan = 336 * 60 * 60
+        nTargetTimespan = 60
         nActualTimespan = max(nActualTimespan, nTargetTimespan / 4)
         nActualTimespan = min(nActualTimespan, nTargetTimespan * 4)
         new_target = min(MAX_TARGET, (target*nActualTimespan) / nTargetTimespan)
